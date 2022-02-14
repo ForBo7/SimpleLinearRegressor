@@ -36,8 +36,8 @@ actual_prices = []
 for data_sample in data_samples:
     actual_prices.append(int(data_sample[-1]))
 
-# Calculate least mean squares.
-least_mean_squares = []
+# Calculate mean squares.
+mean_squares = []
 for coefficient_set in coefficient_sets:
     predicted_prices = []
     # Calculate predicted prices.
@@ -49,12 +49,12 @@ for coefficient_set in coefficient_sets:
     differences = [predicted_price - actual_price
                    for predicted_price, actual_price in zip_object]
     differences_squared = [difference ** 2 for difference in differences]
-    least_mean_squares.append(sum(differences_squared))
+    mean_squares.append(sum(differences_squared))
 
 # Find the least mean square and its corresponding set of coefficients.
-least_mean_square = min(least_mean_squares)
+least_mean_square = min(mean_squares)
 best_coefficient_set = coefficient_sets[
-    least_mean_squares.index(least_mean_square)]
+    mean_squares.index(least_mean_square)]
 
 print(f"The best least mean square found in this session with the current "
       f"set parameters for random coefficients is {least_mean_square}.")
